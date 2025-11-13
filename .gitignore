@@ -1,51 +1,24 @@
-# Dependensi
-/node_modules
-
-# Hasil Build
-/dist
-
-# Log dan File Sementara
+# Logs
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
-
-# File Environment
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-```
-
-**2. Inisialisasi Git dan Commit Pertama**
-
-Buka terminal Anda di folder proyek, dan jalankan perintah berikut satu per satu:
-
-```bash
-# 1. Inisialisasi repositori Git baru
-git init -b main
-
-# 2. Tambahkan semua file (termasuk .gitignore baru Anda) ke 'staging'
-git add .
-
-# 3. Buat 'snapshot' (commit) pertama Anda
-git commit -m "Initial commit: Proyek penjadwalan React"
-```
-
-**3. Buat Repositori di GitHub**
-
-* Buka [GitHub.com](https://github.com).
-* Buat repositori baru (klik "New"). Beri nama, misalnya `proyek-jadwal-react`.
-* **PENTING:** *Jangan* centang "Add a README file" atau "Add .gitignore". Biarkan repositorinya kosong.
-
-**4. Hubungkan Lokal ke GitHub dan Push**
-
-GitHub akan memberi Anda URL untuk repositori baru Anda. Kembali ke terminal Anda dan jalankan perintah ini (ganti `<URL_REPO_ANDA>` dengan URL yang Anda dapatkan dari GitHub):
-
-```bash
-# 1. Hubungkan folder lokal Anda ke repositori di GitHub
-git remote add origin <URL_REPO_ANDA>.git
-
-# 2. Dorong (push) kode Anda dari lokal ke GitHub
-git push -u origin main
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
