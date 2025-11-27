@@ -37,6 +37,33 @@ const KalenderBulanan = ({ jadwal, ruanganMap, divisiMap }) => {
         }).sort((a, b) => new Date(a.waktuMulai) - new Date(b.waktuMulai));
     };
 
+    const getStatusJadwal = (jadwalItem) => {
+        const sekarang = new Date();
+        const waktuMulai = new Date(jadwalItem.waktuMulai);
+        const waktuSelesai = new Date(jadwalItem.waktuSelesai);
+
+        if (sekarang > waktuSelesai) {
+            return 'selesai'; // Jadwal sudah berlalu
+        } else if (sekarang >= waktuMulai && sekarang <= waktuSelesai) {
+            return 'berlangsung'; // Jadwal sedang berlangsung
+        } else {
+            return 'akan-datang'; // Jadwal akan datang
+        }
+    };
+
+    const getWarnaJadwal = (status) => {
+        switch (status) {
+            case 'selesai':
+                return 'bg-gray-300 text-gray-600'; // Abu-abu untuk jadwal selesai
+            case 'berlangsung':
+                return 'bg-green-200 text-green-800'; // Hijau untuk sedang berlangsung
+            case 'akan-datang':
+                return 'bg-blue-100 text-blue-800'; // Biru untuk akan datang
+            default:
+                return 'bg-blue-100 text-blue-800';
+        }
+    };
+
     return (
         <div className="bg-white/70 bg-opacity-90 backdrop-blur-lg text-gray-900 rounded-lg shadow-2xl p-2 md:p-4 w-full max-w-[95vw] mx-auto">
             {/* Header Kalender */}
@@ -80,14 +107,18 @@ const KalenderBulanan = ({ jadwal, ruanganMap, divisiMap }) => {
                                 {hari.getDate()}
                             </span>
                             <div className="flex-grow overflow-y-auto mt-0.5 space-y-0.5">
-                                {jadwalHari.map(j => (
-                                    <div key={j.id} className="bg-blue-100 text-blue-800 p-0.5 rounded text-[9px] md:text-[10px] leading-tight">
-                                        <p className="font-bold truncate">{j.judul}</p>
-                                        <p className="truncate"><Building2 className="w-2 h-2 inline-block mr-0.5" />{ruanganMap.get(j.ruanganId) || 'N/A'}</p>
-                                        <p className="truncate"><Briefcase className="w-2 h-2 inline-block mr-0.5" />{divisiMap.get(j.divisiId) || 'N/A'}</p>
-                                        <p className="font-medium"><Watch className="w-2 h-2 inline-block mr-0.5" />{formatJam(j.waktuMulai)} - {formatJam(j.waktuSelesai)}</p>
-                                    </div>
-                                ))}
+                                {jadwalHari.map(j => {
+                                    const status = getStatusJadwal(j);
+                                    const warnaKelas = getWarnaJadwal(status);
+                                    return (
+                                        <div key={j.id} className={`${warnaKelas} p-0.5 rounded text-[9px] md:text-[10px] leading-tight`}>
+                                            <p className="font-bold truncate">{j.judul}</p>
+                                            <p className="truncate"><Building2 className="w-2 h-2 inline-block mr-0.5" />{ruanganMap.get(j.ruanganId) || 'N/A'}</p>
+                                            <p className="truncate"><Briefcase className="w-2 h-2 inline-block mr-0.5" />{divisiMap.get(j.divisiId) || 'N/A'}</p>
+                                            <p className="font-medium"><Watch className="w-2 h-2 inline-block mr-0.5" />{formatJam(j.waktuMulai)} - {formatJam(j.waktuSelesai)}</p>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     );

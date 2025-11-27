@@ -18,11 +18,11 @@ const LayoutPublik = ({ children, halamanAktif, setHalaman }) => {
             {/* Konten */}
             <div className="relative z-10 min-h-screen flex flex-col">
                 {/* Header */}
-                <header className="flex justify-center items-center p-4 md:p-1">
+                <header className="flex justify-start items-center p-4 md:p-1 ps-4 md:ps-15">
                     <div className="flex items-center space-x-3 md:space-x-5">
-                        <img src="/brand.png" alt="Logo" className="w-12 h-12 md:w-32 md:h-32 object-contain" />
-                        <div className="w-px h-12 bg-white/30 hidden md:block" />
-                        <h1 className="text-xl md:text-4xl font-bold text-center text-shadow-lg/10">
+                        <img src="/bjb.png" alt="Logo" className="w-12 h-12 md:w-32 md:h-32 object-contain" />
+                        <div className="w-px h-12 bg-white/40 hidden md:block" />
+                        <h1 className="text-xl md:text-4xl font-bold text-center text-shadow-lg/30">
                             Jadwal Ruang Rapat
                         </h1>
                     </div>
